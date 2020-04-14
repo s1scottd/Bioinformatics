@@ -12,7 +12,7 @@ namespace BioLib
         public int Length => Text.Length;
 
         //*********************
-        // Operator OVerloads *
+        // Operator Overloads *
         //*********************
         public char this[int i] => Text[i];
 
@@ -29,32 +29,19 @@ namespace BioLib
         // Methods *
         //**********
 
-        /// <summary>
-        /// Returns the number of times the DNA Pattern occurs in
-        /// the DNA String
-        /// </summary>
-        /// <param name="dnaPattern"></param>
-        /// <returns></returns>
-        public int PatternCount(DNAString dnaPattern)
+        public bool Equals(DNAString dnaString)
         {
-            var count = 0;
-            for (var i = 0; i <= Text.Length - dnaPattern.Length; i++)
-                if (Text.Substring(i, dnaPattern.Length).Equals(dnaPattern.Text))
-                    count++;
-            return count;
+            return Text.Equals(dnaString.Text);
         }
 
-        /// <summary>
-        /// Returns the most frequent k-mers in a DNAString
-        /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public List<DNAString> FrequentWords(int length)
+        public DNAString Substring(int start)
         {
-            var frequentPatterns = new List<DNAString>();
+            return new DNAString(Text.Substring(start));
+        }
 
-
-            return frequentPatterns;
+        public DNAString Substring(int start, int length)
+        {
+            return new DNAString(Text.Substring(start, length));
         }
 
         //******************
@@ -65,26 +52,18 @@ namespace BioLib
         /// Converts a DNAString to a number
         /// </summary>
         /// <returns></returns>
-        public int PatternToNumber()
-        {
-            if (Length == 0)
-                return 0;
+        //public int PatternToNumber()
+        //{
+        //    if (Length == 0)
+        //        return 0;
+        //
+        //    char symbol = this[Length - 1];
+        //    DNAString prefix = this.Substring(0, Length - 1);
+        //
+        //    return (4 * prefix.PatternToNumber()) + SymbolToNumber(symbol);
+        //}
 
-            char symbol = this[Length - 1];
-            DNAString prefix = this.SubString(0, Length - 1);
 
-            return (4 * prefix.PatternToNumber()) + SymbolToNumber(symbol);
-        }
-
-        public DNAString SubString(int start)
-        {
-            return new DNAString(Text.Substring(start));
-        }
-
-        public DNAString SubString(int start, int length)
-        {
-            return new DNAString(Text.Substring(start, length));
-        }
 
         //******************
         // Private methods *
@@ -95,14 +74,14 @@ namespace BioLib
         /// </summary>
         /// <param name="symbol"></param>
         /// <returns></returns>
-        private static int SymbolToNumber(char symbol) => char.ToUpper(symbol) switch
-        {
-            'A' => 0,
-            'C' => 1,
-            'G' => 2,
-            'T' => 3,
-            _ => -1,
-        };
+        //private static int SymbolToNumber(char symbol) => char.ToUpper(symbol) switch
+        //{
+        //   'A' => 0,
+        //    'C' => 1,
+        //    'G' => 2,
+        //    'T' => 3,
+        //    _ => -1,
+        //};
 
         /// <summary>
         /// Convert an integer to a nucleotide monomer that it represents

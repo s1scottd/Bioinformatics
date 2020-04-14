@@ -4,6 +4,9 @@ using BioLib;
 
 namespace Problem1B
 {
+    /// <summary>
+    /// Returns the most frequent k-mers in a DNAString.
+    /// </summary>
     internal class Program
     {
         static void Main(string[] args)
